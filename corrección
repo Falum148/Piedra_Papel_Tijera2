@@ -1,0 +1,58 @@
+using System;
+public class PiedraPapelTijera
+{
+    public static void Main(string[] args)
+    {
+        bool jugarDednduevo = true;
+        while (jugarDednduevo)
+        {
+
+            Console.WriteLine("Gracias por jugar!");
+
+            // Inicia el juego
+            
+            // Presenta las opciones al jugador
+            Console.WriteLine("¡Bienvenido al juego Piedra, Papel o Tijera!");
+            Console.WriteLine("Elige una opción: (1) Piedra, (2) Papel, (3) Tijera");
+
+            //generar la opcion de la computadora 
+            int jugador = Convert.ToInt32(Console.ReadLine());
+            Random random = new Random();
+            int computadora = random.Next(1, 4); // Genera un número entre 1 y 3
+
+            Console.WriteLine($"La computadora eligió: {computadora}");
+
+            // Verifica el resultado del juego
+
+            if (jugador == computadora)
+            {
+                Console.WriteLine("¡Es un empate!");
+            }
+            else if ((jugador == 1 && computadora == 3) ||
+                     (jugador == 2 && computadora == 1) ||
+                     (jugador == 3 && computadora == 2))
+            {
+                Console.WriteLine("¡Ganaste!");
+            }
+            else
+            {
+                Console.WriteLine("¡Perdiste!");
+            }
+
+            // Pregunta si el jugador quiere jugar de nuevo
+
+            Console.WriteLine("¿Quieres jugar de nuevo? (s/n)");
+            string respuesta = Console.ReadLine().ToLower();
+            jugarDednduevo = respuesta == "s" || respuesta == "si";
+
+            if (respuesta == "n" || respuesta == "no")
+            {
+                jugarDednduevo = false;
+                Console.WriteLine("Gracias por jugar!");
+            }
+    
+
+
+        }
+    }
+}
