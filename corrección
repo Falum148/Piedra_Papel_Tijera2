@@ -3,8 +3,10 @@ public class PiedraPapelTijera
 {
     public static void Main(string[] args)
     {
-        bool jugarDednduevo = true;
-        while (jugarDednduevo)
+        bool jugarDeNuevo = true;
+        string[] opciones = { "", "Piedra", "Papel", "Tijera" };
+
+        while (jugarDeNuevo)
         {
 
             Console.WriteLine("Gracias por jugar!");
@@ -15,12 +17,30 @@ public class PiedraPapelTijera
             Console.WriteLine("¡Bienvenido al juego Piedra, Papel o Tijera!");
             Console.WriteLine("Elige una opción: (1) Piedra, (2) Papel, (3) Tijera");
 
-            //generar la opcion de la computadora 
-            int jugador = Convert.ToInt32(Console.ReadLine());
-            Random random = new Random();
-            int computadora = random.Next(1, 4); // Genera un número entre 1 y 3
+            int jugador = 0;
+            bool entradaValida = false;
 
-            Console.WriteLine($"La computadora eligió: {computadora}");
+            // Validar la entrada del jugador
+            while (!entradaValida)
+            {
+                Console.Write("Tu elección: ");
+                string entrada = Console.ReadLine();
+                if (int.TryParse(entrada, out jugador) && jugador >= 1 && jugador <= 3)
+                {
+                    entradaValida = true;
+                }
+                else
+                {
+                    Console.WriteLine("Entrada no válida. Por favor ingresa 1, 2 o 3.");
+                } 
+            }    
+
+            //generar la opcion de la computadora 
+              Random random = new Random();
+            int computadora = random.Next(1, 4); // 1 a 3
+
+            Console.WriteLine($"Elegiste: {opciones[jugador]}");
+            Console.WriteLine($"La computadora eligió: {opciones[computadora]}");
 
             // Verifica el resultado del juego
 
@@ -39,20 +59,18 @@ public class PiedraPapelTijera
                 Console.WriteLine("¡Perdiste!");
             }
 
-            // Pregunta si el jugador quiere jugar de nuevo
+            // Preguntar si quiere jugar de nuevo
 
-            Console.WriteLine("¿Quieres jugar de nuevo? (s/n)");
+            Console.Write("\n¿Quieres jugar de nuevo? (s/n): ");
             string respuesta = Console.ReadLine().ToLower();
-            jugarDednduevo = respuesta == "s" || respuesta == "si";
 
-            if (respuesta == "n" || respuesta == "no")
+            jugarDeNuevo = respuesta == "s" || respuesta == "si";
+
+            if (!jugarDeNuevo)
             {
-                jugarDednduevo = false;
-                Console.WriteLine("Gracias por jugar!");
+                Console.WriteLine("¡Gracias por jugar!");
             }
     
-
-
         }
     }
 }
